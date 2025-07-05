@@ -1,0 +1,334 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: linear-gradient(to bottom right, #8b5cf6, #4f46e5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+#taskInput,
+#dueDateInput,
+#dueTimeInput {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1.1em;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#taskInput:focus,
+#dueDateInput:focus,
+#dueTimeInput:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.datetime-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.datetime-inputs input {
+    flex: 1;
+}
+
+#addTaskButton {
+    background-color: #6366f1;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+}
+
+#addTaskButton:hover {
+    background-color: #4f46e5;
+    transform: translateY(-2px);
+}
+
+#taskList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.task-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    transition: background-color 0.3s, border-left 0.3s;
+    border-left: 5px solid transparent;
+}
+
+.task-item.completed {
+    background-color: #e6ffe6;
+    border-left: 5px solid #22c55e;
+    opacity: 0.8;
+}
+
+.task-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.task-text {
+    flex-grow: 1;
+    font-size: 1.2em;
+    text-align: left;
+    word-break: break-word;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: #777;
+}
+
+.task-meta {
+    font-size: 0.9em;
+    color: #666;
+    text-align: left;
+    width: 100%;
+}
+
+.task-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.task-actions button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button {
+    background-color: #facc15;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #eab308;
+}
+
+.delete-button {
+    background-color: #ef4444;
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: #dc2626;
+}
+
+.checkbox-label {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    user-select: none;
+    min-height: 20px; /* Ensure label covers checkbox area */
+}
+
+.checkbox-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    border: 1px solid #ccc;
+}
+
+.checkbox-label input:checked ~ .checkmark {
+    background-color: #2196F3;
+    border-color: #2196F3;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 7px;
+    top: 3px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-label input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Editing specific styles */
+.editing-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.editing-inputs input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.editing-actions {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.editing-actions button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-button {
+    background-color: #22c55e;
+    color: white;
+}
+
+.save-button:hover {
+    background-color: #16a34a;
+}
+
+.cancel-button {
+    background-color: #6b7280;
+    color: white;
+}
+
+.cancel-button:hover {
+    background-color: #4b5563;
+}
+
+@media (min-width: 600px) {
+    .task-item {
+        flex-direction: row;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .task-content {
+        flex-grow: 1;
+    }
+
+    .task-meta {
+        text-align: right;
+        min-width: 150px;
+    }
+
+    .task-actions {
+        margin-top: 0;
+        justify-content: flex-end;
+    }
+
+    .input-section {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    #taskInput {
+        flex: 2;
+    }
+
+    .datetime-inputs {
+        flex: 1;
+        min-width: 180px;
+    }
+
+    #addTaskButton {
+        flex: 0 0 auto;
+        min-width: 120px;
+    }
+
+    .editing-inputs {
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .editing-inputs input[type="text"] {
+        flex: 2;
+    }
+
+    .editing-inputs input[type="date"],
+    .editing-inputs input[type="time"] {
+        flex: 1;
+    }
+    .editing-actions {
+        width: auto;
+    }
+}
